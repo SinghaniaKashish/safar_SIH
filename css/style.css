@@ -1,15 +1,151 @@
-/********** Template CSS **********/
-        /* Styles for the place card */
-        #locationContainer {
-            background-color: rgba(255, 255, 255, 0.8); /* Translucent white background */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Box shadow effect */
-            padding: 20px; /* Add padding to the container */
-            border-radius: 10px; /* Rounded corners */
-            border: 1px solid #ccc; /* Add a border */
-            max-width: 90%; /* Limit the maximum width */
-            margin: 0 auto; /* Center align horizontally */
-        }
+#locationContainer {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap into multiple rows */
+    gap: 10px; 
+    max-width: 100vw; 
+    justify-content: center; 
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.001); 
+    border-radius: 12px; 
+    overflow: hidden; /* Remove scrollbar */
+}
+
+.location {
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    width: 170px; 
+    text-align: center;
+    flex-shrink: 0; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.location:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.location label {
+    font-size: 14px; 
+    margin-bottom: 8px;
+    display: block;
+    color: #000000;
+    font-weight: 600;
+}
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px; 
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 30px; 
+    height: 16px; 
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 16px; 
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px; 
+    width: 10px; 
+    border-radius: 50%;
+    left: 2px; 
+    bottom: 3px; 
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #007BFF;
+}
+
+input:checked + .slider:before {
+    transform: translateX(14px);
+}
+
+.location input[type="range"] {
+    width: 100%;
+    margin: 8px 0; /* Reduced margin */
+    -webkit-appearance: none;
+    background: linear-gradient(to right, #6a00ff, #860dff);
+    height: 4px; /* Reduced height */
+    border-radius: 4px; /* Reduced radius */
+}
+
+.location input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; /* Reduced width */
+    height: 16px; /* Reduced height */
+    border-radius: 50%;
+    background: #7a27df;
+    cursor: pointer;
+}
+
+.location output {
+    display: inline-block;
+    margin-top: 4px; /* Reduced margin */
+    font-size: 14px; /* Reduced font size */
+    font-weight: 600;
+    color: #0e0e0e;
+}
+
+.location hr {
+    border: 0;
+    height: 1px;
+    background: #eaeaea;
+    margin: 15px 0; /* Reduced margin */
+}
+
+.icon {
+    font-size: 20px; /* Reduced icon size */
+    margin-right: 6px; /* Reduced margin */
+    vertical-align: middle;
+    color: #007BFF;
+}
+
+@media (max-width: 768px) {
+    #locationContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location {
+        width: 90%;
+    }
+}
         
+
+
+
+
+
+
         #placeInfo {
             display: none;
             position: fixed;
@@ -321,132 +457,6 @@
 }
 
 
-/*** Package ***/
-.package-item {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
-}
-
-.package-item img {
-    transition: .5s;
-}
-
-.package-item:hover img {
-    transform: scale(1.1);
-}
-
-
-/*** Booking ***/
-.booking {
-    background: linear-gradient(rgba(15, 23, 43, .7), rgba(15, 23, 43, .7)), url(../img/booking.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-
-/*** Team ***/
-.team-item {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
-}
-
-.team-item img {
-    transition: .5s;
-}
-
-.team-item:hover img {
-    transform: scale(1.1);
-}
-
-.team-item .btn {
-    background: #FFFFFF;
-    color: var(--primary);
-    border-radius: 20px;
-    border-bottom: 1px solid var(--primary);
-}
-
-.team-item .btn:hover {
-    background: var(--primary);
-    color: #FFFFFF;
-}
-
-
-/*** Testimonial ***/
-.testimonial-carousel::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-}
-
-.testimonial-carousel::after {
-    position: absolute;
-    content: "";
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 0;
-    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
-    z-index: 1;
-}
-
-@media (min-width: 768px) {
-
-    .testimonial-carousel::before,
-    .testimonial-carousel::after {
-        width: 200px;
-    }
-}
-
-@media (min-width: 992px) {
-
-    .testimonial-carousel::before,
-    .testimonial-carousel::after {
-        width: 300px;
-    }
-}
-
-.testimonial-carousel .owl-item .testimonial-item,
-.testimonial-carousel .owl-item.center .testimonial-item * {
-    transition: .5s;
-}
-
-.testimonial-carousel .owl-item.center .testimonial-item {
-    background: var(--primary) !important;
-    border-color: var(--primary) !important;
-}
-
-.testimonial-carousel .owl-item.center .testimonial-item * {
-    color: #FFFFFF !important;
-}
-
-.testimonial-carousel .owl-dots {
-    margin-top: 24px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-.testimonial-carousel .owl-dot {
-    position: relative;
-    display: inline-block;
-    margin: 0 5px;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #CCCCCC;
-    border-radius: 15px;
-    transition: .5s;
-}
-
-.testimonial-carousel .owl-dot.active {
-    background: var(--primary);
-    border-color: var(--primary);
-}
-
-
 /*** Footer ***/
 .footer .btn.btn-social {
     margin-right: 5px;
@@ -523,3 +533,5 @@
 .font-hindi-english {
     font-family: 'Pacifico', cursive;
 }
+
+

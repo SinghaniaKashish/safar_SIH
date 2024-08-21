@@ -1,55 +1,77 @@
-const locations = ["religious_places", "tourist_attraction", "restaurant", "park", "museum"];
-        const placeRequests = [];
+const locations = ["Religious Places", "Tourist Attraction", "Restaurant", "Park", "Museum"];
         
         // Function to create location controls
         function createLocationControls(locationName, locationIndex) {
             const locationDiv = document.createElement('div');
             locationDiv.classList.add('location');
             
+            const toggleContainer = document.createElement('div');
+            toggleContainer.classList.add('toggle-container');
+            
+            const toggleInput = document.createElement('input');
+            toggleInput.type = 'checkbox';
+            toggleInput.id = `toggle${locationIndex}`;
+            toggleInput.classList.add('toggle-input');
+            
+            const toggleLabel = document.createElement('label');
+            toggleLabel.htmlFor = `toggle${locationIndex}`;
+            toggleLabel.classList.add('toggle-switch');
+            toggleLabel.appendChild(toggleInput);
+            
+            const slider = document.createElement('span');
+            slider.classList.add('slider');
+            toggleLabel.appendChild(slider);
+            
+            toggleContainer.appendChild(toggleLabel);
+            locationDiv.appendChild(toggleContainer);
+            
             const locationLabel = document.createElement('label');
-            locationLabel.textContent = ` ${locationName }  `;
+            locationLabel.textContent = `${locationName}`;
             locationDiv.appendChild(locationLabel);
             
             const radiusLabel = document.createElement('label');
             radiusLabel.setAttribute('for', `radiusSlider${locationIndex}`);
-            radiusLabel.textContent = 'Radius:';
+            radiusLabel.innerHTML = `<i class="icon">📏</i>Radius:`;
             locationDiv.appendChild(radiusLabel);
             
             const radiusSlider = document.createElement('input');
             radiusSlider.type = 'range';
             radiusSlider.id = `radiusSlider${locationIndex}`;
             radiusSlider.min = '500';
-            radiusSlider.max = '5000';
+            radiusSlider.max = '10000';
             radiusSlider.step = '500';
             locationDiv.appendChild(radiusSlider);
             
             const radiusValue = document.createElement('output');
             radiusValue.id = `radiusValue${locationIndex}`;
-            radiusValue.textContent = '2000m  '; // Initial value
-            locationDiv.appendChild(radiusValue);
+            radiusValue.textContent = '500m'; // Initial value
+            radiusLabel.appendChild(radiusValue);
+            
+            locationDiv.appendChild(document.createElement('hr'));
             
             const ratingLabel = document.createElement('label');
             ratingLabel.setAttribute('for', `ratingSlider${locationIndex}`);
-            ratingLabel.textContent = 'Rating: ';
+            ratingLabel.innerHTML = `<i class="icon">⭐</i>Rating:`;
             locationDiv.appendChild(ratingLabel);
             
             const ratingSlider = document.createElement('input');
             ratingSlider.type = 'range';
             ratingSlider.id = `ratingSlider${locationIndex}`;
             ratingSlider.min = '500';
-            ratingSlider.max = '10000';
+            ratingSlider.max = '5000';
             ratingSlider.step = '500';
             locationDiv.appendChild(ratingSlider);
             
             const ratingValue = document.createElement('output');
             ratingValue.id = `ratingValue${locationIndex}`;
+            ratingValue.textContent = '0.5'; // Initial value
+            ratingLabel.appendChild(ratingValue);
             
-            ratingValue.textContent = '3.5 '; // Initial value
-            locationDiv.appendChild(ratingValue);
+            locationDiv.appendChild(document.createElement('hr'));
             
             const reviewsLabel = document.createElement('label');
             reviewsLabel.setAttribute('for', `reviewsSlider${locationIndex}`);
-            reviewsLabel.textContent = 'Reviews:';
+            reviewsLabel.innerHTML = `<i class="icon">📝</i>Reviews:`;
             locationDiv.appendChild(reviewsLabel);
             
             const reviewsSlider = document.createElement('input');
@@ -62,18 +84,8 @@ const locations = ["religious_places", "tourist_attraction", "restaurant", "park
             
             const reviewsValue = document.createElement('output');
             reviewsValue.id = `reviewsValue${locationIndex}`;
-            reviewsValue.textContent = '5000 '; // Initial value
-            locationDiv.appendChild(reviewsValue);
-
-            const toggleLabel = document.createElement('label');
-            toggleLabel.setAttribute('for', `toggle${locationIndex}`);
-            toggleLabel.textContent = 'Toggle:';
-            locationDiv.appendChild(toggleLabel);
-            
-            const toggleInput = document.createElement('input');
-            toggleInput.type = 'checkbox';
-            toggleInput.id = `toggle${locationIndex}`;
-            locationDiv.appendChild(toggleInput);
+            reviewsValue.textContent = '500'; // Initial value
+            reviewsLabel.appendChild(reviewsValue);
             
             // Add event listeners to sliders
             radiusSlider.addEventListener('input', updateRadiusValue);
@@ -92,7 +104,7 @@ const locations = ["religious_places", "tourist_attraction", "restaurant", "park
         function updateRadiusValue() {
             const locationIndex = this.id.replace('radiusSlider', '');
             const radiusValue = document.getElementById(`radiusSlider${locationIndex}`).value;
-            document.getElementById(`radiusValue${locationIndex}`).textContent = radiusValue;
+            document.getElementById(`radiusValue${locationIndex}`).textContent = `${radiusValue}m`;
         }
         
         function updateRatingValue() {
@@ -192,8 +204,8 @@ const locations = ["religious_places", "tourist_attraction", "restaurant", "park
 
         // Define an array of place types and radii
         // var placeRequests = [
-        //     { type: 'religious_places', radius: 2000, minRating: 3.5, minReviews: 5000 },
-        //     { type: 'tourist_attraction', radius: 2000, minRating: 4.0, minReviews: 5000 },
+        //     { type: 'Religious Places', radius: 2000, minRating: 3.5, minReviews: 5000 },
+        //     { type: 'Tourist Attraction ', radius: 2000, minRating: 4.0, minReviews: 5000 },
         //     { type: 'restaurant', radius: 2000, minRating: 4.0, minReviews: 3000 },
         //     { type: 'park', radius: 2000, minRating: 3.0, minReviews: 5000 },
         //     { type: 'museum', radius: 2000, minRating: 4.5, minReviews: 1000 }
