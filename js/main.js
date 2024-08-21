@@ -1,4 +1,4 @@
-const locations = ["hindu_temple", "tourist_attraction", "restaurant", "park", "museum"];
+const locations = ["religious_places", "tourist_attraction", "restaurant", "park", "museum"];
         const placeRequests = [];
         
         // Function to create location controls
@@ -192,7 +192,7 @@ const locations = ["hindu_temple", "tourist_attraction", "restaurant", "park", "
 
         // Define an array of place types and radii
         // var placeRequests = [
-        //     { type: 'hindu_temple', radius: 2000, minRating: 3.5, minReviews: 5000 },
+        //     { type: 'religious_places', radius: 2000, minRating: 3.5, minReviews: 5000 },
         //     { type: 'tourist_attraction', radius: 2000, minRating: 4.0, minReviews: 5000 },
         //     { type: 'restaurant', radius: 2000, minRating: 4.0, minReviews: 3000 },
         //     { type: 'park', radius: 2000, minRating: 3.0, minReviews: 5000 },
